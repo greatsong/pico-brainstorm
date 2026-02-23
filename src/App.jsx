@@ -36,7 +36,11 @@ const EXPERTS = [
 
 function App() {
   const [selectedSensors, setSelectedSensors] = useState([]); // Array of selected sensors
-  const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '');
+  const [apiKey, setApiKey] = useState(() => {
+    const envKey = import.meta.env.VITE_GEMINI_API_KEY || '';
+    if (envKey) return envKey;
+    return localStorage.getItem('gemini_api_key') || '';
+  });
   const [showSettings, setShowSettings] = useState(!apiKey);
   const [chatInput, setChatInput] = useState('');
   const [chatHistory, setChatHistory] = useState(() => {
