@@ -36,7 +36,7 @@ const EXPERTS = [
 
 function App() {
   const [selectedSensors, setSelectedSensors] = useState([]); // Array of selected sensors
-  const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || 'AIzaSyBMuYvu6jJQYmtCTzLibZYll0-nX2ivqfc');
+  const [apiKey, setApiKey] = useState(localStorage.getItem('gemini_api_key') || import.meta.env.VITE_GEMINI_API_KEY || '');
   const [showSettings, setShowSettings] = useState(!apiKey);
   const [chatInput, setChatInput] = useState('');
   const [chatHistory, setChatHistory] = useState(() => {
